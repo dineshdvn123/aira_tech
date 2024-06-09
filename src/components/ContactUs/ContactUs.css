@@ -1,0 +1,126 @@
+.get-in-touch {
+    padding: 4rem 2rem;
+    background-color: #f5f5f5; /* Light background color */
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+  }
+  
+  .info-item {
+    display: flex; 
+    align-items: center; 
+  }
+  
+  .info-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+  }
+  
+  .info-item p {
+    margin: 0;
+  }
+  
+  .contact-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-form h3 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .form-row {
+    display: flex; 
+    gap: 1rem; 
+  }
+  
+  .input-wrapper {
+    position: relative; 
+    flex: 1;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: -webkit-fill-available; 
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white; 
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-form .input-wrapper.error input {
+    border-color: red; 
+  }
+  
+  .contact-form .error-icon {
+    position: absolute;
+    right: 0.8rem;
+    top: 37%;
+    transform: translateY(-50%);
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #007bff; 
+  }
+  
+  .contact-form textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  .contact-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-form button:hover {
+    background-color: #0056b3; 
+  }
+  
+  @media (max-width: 768px) {
+    .contact-info {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .info-item {
+      margin-bottom: 1rem;
+    }
+  
+    .form-row {
+      flex-direction: column;
+    }
+  }
+  

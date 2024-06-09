@@ -1,0 +1,105 @@
+.logo {
+    width: 4rem;
+    height: 4rem;
+}
+
+.logo_title {
+    display: flex;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #0f172a; */
+    background-color: #121819;
+    color: white;
+    position: sticky;
+    top: 0;
+    padding: 0px 3rem;
+    z-index: 999999;
+}
+
+nav .title {
+    font-size: 1.5rem;
+    margin: 1rem -2px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+   list-style: none; 
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+}
+
+nav ul li a:not(.active):hover {
+    color: rgb(144, 136, 223);
+}
+
+.active {
+   color: rgb(137, 136, 148);
+}
+
+nav .menu {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+}
+
+nav .menu span {
+    height: 0.4rem;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0.2rem;
+}
+
+@media (max-width: 600px) {
+    nav .menu {
+        display: flex;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0rem;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+        margin-bottom: 0.25rem;
+        align-items: center; 
+    }
+
+    nav ul.open {
+        display: flex;
+    }
+
+    nav ul li {
+        text-align: center;
+    }
+
+    nav ul li a {
+        margin: 0.2rem 0.5rem;
+    }
+}

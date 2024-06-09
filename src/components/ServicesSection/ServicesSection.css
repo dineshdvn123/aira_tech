@@ -1,0 +1,128 @@
+.service {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.service.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Other existing CSS */
+.services-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem; /* Adjust as needed */
+  margin-bottom: 1rem;
+  opacity: 0; /* Initial state for transition */
+  transform: translateY(-20px); /* Starting position */
+  animation: slide-in-top 3s forwards;
+}
+
+.section-intro {
+  color: #555;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slide-in-top 1s forwards;
+  animation-delay: 3s; /* Delay the intro animation */
+}
+
+/* Services Grid */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Individual Service Styling */
+.service {
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff; /* Add background for better contrast */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  opacity: 0; /* Initial state for transition */
+  transform: translateY(20px); /* Initial state for transition */
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Add transition */
+  animation-delay: 3s;
+}
+
+.service.visible {
+  opacity: 1; /* Final state for transition */
+  transform: translateY(0); /* Final state for transition */
+}
+
+.service img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.service h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.service p {
+  color: #666;
+}
+
+/* Hover Effect */
+.service:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Slide-In Animations */
+.slide-in-top {
+  animation: slide-in-top 4s forwards;
+}
+
+@keyframes slide-in-top {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  transform: translateX(-20px);
+  animation: slide-in-left 10s forwards;
+}
+
+@keyframes slide-in-left {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-right {
+  transform: translateX(20px);
+  animation: slide-in-right 4s forwards;
+}
+
+@keyframes slide-in-right {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .services {
+    grid-template-columns: 1fr; /* Stack vertically on smaller screens */
+  }
+
+  .service {
+    margin-bottom: 1.5rem; /* Add space between services when stacked */
+  }
+}
