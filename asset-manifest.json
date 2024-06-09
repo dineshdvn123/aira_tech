@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/aira_tech/static/css/main.ef5ab506.css",
+    "main.js": "/aira_tech/static/js/main.6cd369b4.js",
+    "static/js/453.3ad0aad3.chunk.js": "/aira_tech/static/js/453.3ad0aad3.chunk.js",
+    "static/media/Aira_Tech_Logo.png": "/aira_tech/static/media/Aira_Tech_Logo.895542bc1bbdf4a6181c.png",
+    "static/media/AboutUs.png": "/aira_tech/static/media/AboutUs.193489402beeecd0dc6b.png",
+    "static/media/Coding_4.png": "/aira_tech/static/media/Coding_4.3975f36be8d432ffa30d.png",
+    "static/media/job-placement.png": "/aira_tech/static/media/job-placement.ce4a9e680f5c8477ac59.png",
+    "index.html": "/aira_tech/index.html",
+    "main.ef5ab506.css.map": "/aira_tech/static/css/main.ef5ab506.css.map",
+    "main.6cd369b4.js.map": "/aira_tech/static/js/main.6cd369b4.js.map",
+    "453.3ad0aad3.chunk.js.map": "/aira_tech/static/js/453.3ad0aad3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef5ab506.css",
+    "static/js/main.6cd369b4.js"
+  ]
+}
