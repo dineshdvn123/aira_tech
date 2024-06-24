@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 0 2rem;
   height: 100vh;
-  background-color: #005d9bc4;
+  background-color: #1B1A55;
 }
 
 .hero-image {
@@ -61,7 +61,7 @@
 .hero button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #535C91;
   color: white;
   border: none;
   border-radius: 0.25rem;
