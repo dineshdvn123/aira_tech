@@ -96,7 +96,7 @@ function Careers() {
   };
 
   const handleViewJob = (jobId) => {
-    window.open(`/job/${jobId}`, '_blank');
+    window.open(`/jobs/${jobId}`, '_blank');
   };
 
   useEffect(() => {
