@@ -5,6 +5,7 @@ import LandingPage from './components/pages/LandingPage';
 import ContactUs from './components/ContactUs/ContactUs'
 import Footer from './components/Footer/Footer'
 import Careers from './components/Careers/Careers';
+import JobDetail from './components/JobDetail/JobDetail';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/job/:jobId" element={<JobDetail />} />
       </Routes>
       <Footer />
     </div>

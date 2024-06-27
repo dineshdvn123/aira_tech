@@ -1,0 +1,158 @@
+.job-detail-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px 0px;
+    border: none;
+    box-shadow: 3px 4px 14px 5px #ede5ec;
+    text-align: left;
+  }
+  
+  .job-detail-card-body {
+    padding: 50px;
+  }
+
+  .job-detail-card-body-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  li {
+    padding: 5px 0px;
+  }
+  
+  .job-detail-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .job-detail-summary-title {
+    color: #b1afaf;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+  
+  .job-details-header {
+    margin-top: -4px;
+  }
+  
+  .job-detail-pay-scale {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* RegistrationForm.css */
+
+.form-container {
+    margin: 25px 0px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form-row {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-right: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-control-file {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  .btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+
+  .form-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    margin-top: 0px;
+  }
+
+  input[type="file"] {
+    display: none;
+}
+
+  .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #efefef;
+    width: fit-content;
+    text-align: center;
+}
+
+.file {
+    display: flex;
+    flex-direction: column;
+}
+
+  @media (max-width: 600px) {
+    .job-detail-card-title {
+        flex-direction: column;
+    }
+
+    .job-detail-card-title button {
+        width: 100%;
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+
+  }
+
+  @media (max-width: 400px) {
+    .file-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        display: inline-block;
+      }
+  }
+  
+  

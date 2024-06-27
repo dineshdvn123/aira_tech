@@ -34,8 +34,11 @@ function Careers() {
   const getFilteredJobs = (pageNumber = 1, title = "", location = "") => {
     setLoading(true);
     axios
-      .get(
-        `https://aira-tech-backend-1.onrender.com/jobs?page=${pageNumber}&limit=${itemsPerPage}&title=${title}&location=${location}`
+      // .get(
+      //   `https://aira-tech-backend-1.onrender.com/jobs?page=${pageNumber}&limit=${itemsPerPage}&title=${title}&location=${location}`
+      // )
+      .get (
+        `http://localhost:8080/jobs?page=${pageNumber}&limit=${itemsPerPage}&title=${title}&location=${location}`
       )
       .then((response) => {
         setFilteredJobs(response.data.jobs);
@@ -50,7 +53,8 @@ function Careers() {
 
   const fetchJobTitles = () => {
     axios
-      .get("https://aira-tech-backend-1.onrender.com/job-titles")
+      // .get("https://aira-tech-backend-1.onrender.com/job-titles")
+      .get("http://localhost:8080/job-titles")
       .then((response) => {
         const options = response.data.map((title) => ({
           value: title,
@@ -65,7 +69,8 @@ function Careers() {
 
   const fetchLocations = () => {
     axios
-      .get("https://aira-tech-backend-1.onrender.com/locations")
+      // .get("https://aira-tech-backend-1.onrender.com/locations")
+      .get("http://localhost:8080/locations")
       .then((response) => {
         const locations = response.data.map((loc) => ({
           value: `${loc.city}, ${loc.state}, ${loc.country}`,
@@ -88,6 +93,10 @@ function Careers() {
   const handleSearch = () => {
     setCurrentPage(1);
     getFilteredJobs(1, searchJobTitle, searchLocation);
+  };
+
+  const handleViewJob = (jobId) => {
+    window.open(`/job/${jobId}`, '_blank');
   };
 
   useEffect(() => {
@@ -167,8 +176,8 @@ function Careers() {
                           {new Date(job.PostedDate).toLocaleDateString("en-US")}
                         </p>
                       </div>
-                      <div className="job-apply">
-                        <button>Apply</button>
+                      <div className="job-apply" onClick={() => handleViewJob(job.JobId)}>
+                        <button>View Job</button>
                       </div>
                     </div>
                   </div>
