@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import Select from "react-select";
 import axios from "axios";
 import { MdOutlineSearchOff } from "react-icons/md";
@@ -31,7 +30,6 @@ function Careers() {
   const [searchLocation, setSearchLocation] = useState("");
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 10;
-  const navigate = useNavigate();
 
   const getFilteredJobs = (pageNumber = 1, title = "", location = "") => {
     setLoading(true);
@@ -98,7 +96,7 @@ function Careers() {
   };
 
   const handleViewJob = (jobId) => {
-    navigate(`/jobs/${jobId}`);
+    window.open(`/jobs/${jobId}`, '_blank');
   };
 
   useEffect(() => {
