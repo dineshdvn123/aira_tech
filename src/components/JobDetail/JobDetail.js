@@ -74,7 +74,8 @@ function JobDetail() {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/jobs/${jobId}`);
+        // const response = await axios.get(`http://localhost:8080/jobs/${jobId}`);
+        const response = await axios.get(`https://aira-tech-backend-1.onrender.com/${jobId}`);
         setJob(response.data);
         setLoading(false);
       } catch (err) {
