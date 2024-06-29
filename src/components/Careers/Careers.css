@@ -239,6 +239,10 @@
   align-items: center;
 }
 
+#react-select-3-input {
+  opacity: 1;
+}
+
 @media (max-width: 750px) {
   .job-details {
     display: flex;

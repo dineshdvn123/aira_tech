@@ -11,14 +11,38 @@ import {
 } from "date-fns";
 import { CiWallet } from "react-icons/ci";
 import axios from "axios";
+import { Modal, Space } from "antd";
+import {
+  ExclamationCircleOutlined,
+  CheckCircleOutlined,
+} from "@ant-design/icons";
 import "./JobDetail.css";
 
-function isNumeric(value) {
-  if (!value) {
-    return false;
-  }
-  return /^\d+$/.test(value);
-}
+// Validation schema using Yup
+const schema = yup.object().shape({
+  firstName: yup.string().required("First Name is required"),
+  lastName: yup.string().required("Last Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  phone: yup
+    .string()
+    .matches(/^\d+$/, "Phone number must only contain digits")
+    .min(10, "Phone number must be at least 10 digits")
+    .required("Phone number is required"),
+  resume: yup
+    .mixed()
+    .required("Resume is required")
+    .test("fileSize", "The file is too large", (value) => {
+      return value && value.size <= 2000000; // 2 MB
+    })
+    .test("fileType", "Only PDF or DOCX files are accepted", (value) => {
+      return (
+        value &&
+        (value.type === "application/pdf" ||
+          value.type ===
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+      );
+    }),
+});
 
 function getDateDifference(startDate, endDate) {
   const minutes = differenceInMinutes(endDate, startDate);
@@ -37,39 +61,26 @@ function getDateDifference(startDate, endDate) {
   }
 }
 
-// Create schema for yup validation
-const schema = yup.object().shape({
-  firstName: yup.string().required("First Name is required"),
-  lastName: yup.string().required("Last Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  phone: yup
-    .string()
-    .test("is-numeric", "Phone number must only contain digits", (value) =>
-      isNumeric(value)
-    )
-    .test(
-      "is-ten-digits",
-      "Phone number must be 10 digits",
-      (value) => value && value.length === 10
-    )
-    .required("Phone number is required"),
-  resume: yup
-    .mixed()
-    .required("Resume is required")
-    .test("fileSize", "The file is too large", (value) => {
-      return value && value.size <= 2000000; // 2 MB
-    })
-    .test("fileType", "Only PDF files are accepted", (value) => {
-      return value && value.type === "application/pdf";
-    }),
-});
-
 function JobDetail() {
   const { jobId } = useParams();
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [fileName, setFileName] = useState('');
+  const [circleLoading, setCircleLoading] = useState(false);
+  const [fileName, setFileName] = useState("");
   const [error, setError] = useState(null);
+  const [successModalVisible, setSuccessModalVisible] = useState(false);
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const {
+    handleSubmit,
+    reset,
+    control,
+    setValue,
+    formState: { errors },
+    setFocus,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -88,26 +99,68 @@ function JobDetail() {
     fetchJob();
   }, [jobId]);
 
-  const {
-    handleSubmit,
-    setFocus,
-    control,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setFileName(file.name);
       setValue("resume", file); // Set file in form state
     }
+     else {
+    setFileName(""); // Clear the file name if no file selected
+    setValue("resume", undefined);
+  }
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setCircleLoading(true);
+    const formData = new FormData();
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("email", data.email);
+    formData.append("phone", data.phone);
+    formData.append("resume", data.resume);
+
+    try {
+      const response = await axios.post(
+        // `http://localhost:8080/apply/${jobId}`,
+        `https://aira-tech-backend-1.onrender.com/apply/${jobId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        setModalMessage(
+          response.data.message || "Application submitted successfully!"
+        );
+        setSuccessModalVisible(true);
+        setError(null); // Clear any previous error
+        reset(); // Reset the form after successful submission
+        setFileName("");
+      }
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      setModalMessage(
+        error.response?.data.message || "Error submitting application"
+      );
+      setErrorModalVisible(true);
+    }finally {
+        setCircleLoading(false);
+    }
+
+  };
+
+  const handleSuccessModalOk = () => {
+    setSuccessModalVisible(false);
+    // Additional logic after success modal closes
+  };
+
+  const handleErrorModalOk = () => {
+    setErrorModalVisible(false);
+    // Additional logic after error modal closes
   };
 
   if (loading) {
@@ -141,7 +194,7 @@ function JobDetail() {
             <button
               type="button"
               className="btn-submit d-flex"
-              onClick={() => setFocus("firstName")}
+              onClick={() => setFocus("firstName")} // Manually trigger reset on Apply button click
             >
               Apply
             </button>
@@ -167,6 +220,9 @@ function JobDetail() {
             </p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="form-container">
+          <div className={circleLoading ? "circle-loader-container" : "hidden"}>
+        <div className="circle-loader"></div>
+      </div>
             <p className="form-header">Apply Here</p>
 
             {/* First Name and Last Name in one row */}
@@ -176,6 +232,7 @@ function JobDetail() {
                 <Controller
                   name="firstName"
                   control={control}
+                  defaultValue=""
                   render={({ field }) => (
                     <input {...field} className="form-control" />
                   )}
@@ -187,6 +244,7 @@ function JobDetail() {
                 <Controller
                   name="lastName"
                   control={control}
+                  defaultValue=""
                   render={({ field }) => (
                     <input {...field} className="form-control" />
                   )}
@@ -202,6 +260,7 @@ function JobDetail() {
                 <Controller
                   name="email"
                   control={control}
+                  defaultValue=""
                   render={({ field }) => (
                     <input {...field} className="form-control" />
                   )}
@@ -213,6 +272,7 @@ function JobDetail() {
                 <Controller
                   name="phone"
                   control={control}
+                  defaultValue=""
                   render={({ field }) => (
                     <input {...field} className="form-control" />
                   )}
@@ -228,32 +288,69 @@ function JobDetail() {
                 name="resume"
                 control={control}
                 render={({ field }) => (
-                    <>
-          <label htmlFor="file-upload" className="custom-file-upload">
-            Custom Upload
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            onChange={(e) => {
-              handleFileChange(e);
-              field.onChange(e.target.files[0]); // Set the file in react-hook-form
-            }}
-          />
-          <p className="file-name" style={{ display: fileName.length === 0 ? 'none' : 'inline-block' }}>{fileName}</p>
-                    </>
+                  <>
+                    <label htmlFor="file-upload" className="custom-file-upload">
+                      Upload
+                    </label>
+                    <input
+                      id="file-upload"
+                      type="file"
+                      accept=".pdf, .docx"
+                      onChange={(e) => {
+                        handleFileChange(e);
+                        e.target.value = null;
+                      }}
+                      style={{ display: "none" }}
+                    />
+                    <p>{fileName}</p>
+                  </>
                 )}
               />
               <p className="error-message">{errors.resume?.message}</p>
             </div>
-
-            {/* Submit button */}
-            <button type="submit" className="btn-submit">
-              Submit
+           
+            {/* Submit Button */}
+            <div>
+            <button type="submit" className="btn-submit" style={{width : '100px'}}>
+                Submit
             </button>
+            </div>
+            
           </form>
         </div>
       </div>
+
+      {/* Success Modal */}
+      <Modal
+        title={
+          <Space size={8} align="center">
+            <CheckCircleOutlined style={{ color: "#52c41a", fontSize: 24 }} />
+            <span>Application Submitted Successfully</span>
+          </Space>
+        }
+        visible={successModalVisible}
+        onOk={handleSuccessModalOk}
+        onCancel={handleSuccessModalOk}
+      >
+        <p>{modalMessage}</p>
+      </Modal>
+
+      {/* Error Modal */}
+      <Modal
+        title={
+          <Space size={8} align="center">
+            <ExclamationCircleOutlined
+              style={{ color: "#ff4d4f", fontSize: 24 }}
+            />
+            <span>Application Already Submitted</span>
+          </Space>
+        }
+        visible={errorModalVisible}
+        onOk={handleErrorModalOk}
+        onCancel={handleErrorModalOk}
+      >
+        <p>{modalMessage}</p>
+      </Modal>
     </div>
   );
 }

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import logo from "../../assets/Aira_Tech_Logo.png"
+import logo from "../../assets/Aira_Tech_Logo.png";
 import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const handleLinkClick = () => {
+        setMenuOpen(false);
+    };
 
     return (
         <nav>
@@ -21,16 +25,16 @@ const NavBar = () => {
             </div>
             <ul className={menuOpen ? "open" : ""}>
                 <li>
-                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
                 </li>
                 {/* <li>
-                    <NavLink to="/services">Services</NavLink>
+                    <NavLink to="/services" onClick={handleLinkClick}>Services</NavLink>
                 </li> */}
                 <li>
-                    <NavLink to="/contact">Contact</NavLink>
+                    <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/careers">Careers</NavLink>
+                    <NavLink to="/careers" onClick={handleLinkClick}>Careers</NavLink>
                 </li>
             </ul>
         </nav>

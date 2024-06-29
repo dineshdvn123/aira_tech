@@ -31,6 +31,8 @@ function Careers() {
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 10;
 
+  
+
   const getFilteredJobs = (pageNumber = 1, title = "", location = "") => {
     setLoading(true);
     axios
@@ -119,7 +121,14 @@ function Careers() {
               isClearable={true}
               isSearchable={true}
               options={jobTitleOptions}
+              // inputValue={searchJobTitle}
               onChange={(selectedOption) => setSearchJobTitle(selectedOption ? selectedOption.value : "")}
+              // onInputChange={(value, action) => {
+              //   // only set the input when the action that caused the
+              //   // change equals to "input-change" and ignore the other
+              //   // ones like: "set-value", "input-blur", and "menu-close"
+              //   if (action.action === "input-change") setSearchJobTitle(value); // <---
+              // }}
               placeholder="Job Title or Keyword"
             />
             <Select
