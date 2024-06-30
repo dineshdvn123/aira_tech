@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AboutUsImage from '../../assets/AboutUs.png'
 import './AboutUs.css';
 
+
 const AboutUs = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    },[])
     return (
         <section className="about-us">
             <div className="about-content">

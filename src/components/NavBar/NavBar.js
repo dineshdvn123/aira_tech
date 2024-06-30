@@ -27,9 +27,9 @@ const NavBar = () => {
                 <li>
                     <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
                 </li>
-                {/* <li>
+                <li>
                     <NavLink to="/services" onClick={handleLinkClick}>Services</NavLink>
-                </li> */}
+                </li>
                 <li>
                     <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
                 </li>

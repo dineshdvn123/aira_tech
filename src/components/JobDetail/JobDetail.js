@@ -83,6 +83,7 @@ function JobDetail() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchJob = async () => {
       try {
         // const response = await axios.get(`http://localhost:8080/jobs/${jobId}`);

@@ -1,0 +1,91 @@
+.service-details {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* padding: 25px; */
+    text-align: left;
+  }
+
+  .service-details-description {
+    padding: 50px;
+  }
+  
+  .service-details-image {
+    width: 100%;
+    max-height: 500px;
+  }
+  
+  .service-details h2 {
+    font-size: 2em;
+    margin-top: 20px;
+  }
+  
+  .service-details p {
+    margin: 20px 0;
+    line-height: 1.6;
+  }
+  
+  .service-details-images {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .service-details-images img {
+    width: 50%;
+    height: auto;
+  }
+  
+  .service-details h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+  }
+  
+  .service-details ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .service-details ul li {
+    /* background: url('check-icon.png') no-repeat left center; */
+    padding-left: 25px;
+    margin-bottom: 10px;
+  }
+
+  .check-icon {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+    background-color: #ffe5e5;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .check {
+    width: 14px;
+    height: 28px;
+    border: solid #f37a24;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+    position: relative;
+    bottom: 6px;
+  }
+
+  .service-points {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .capabilities-section, approach-section {
+    margin-top: 35px;
+  }
+
+
+  
