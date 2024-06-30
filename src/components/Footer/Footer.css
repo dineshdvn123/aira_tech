@@ -34,7 +34,7 @@
   padding-top: 20px;
   border-top: 1px solid #333; 
 }
-
+/* 
 @media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
@@ -45,4 +45,4 @@
   .footer-column {
     margin: 15px 0;
   }
-}
+} */

@@ -119,10 +119,10 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .services {
-    grid-template-columns: 1fr; /* Stack vertically on smaller screens */
+    grid-template-columns: 1fr;
   }
 
   .service {
-    margin-bottom: 1.5rem; /* Add space between services when stacked */
+    margin-bottom: 1.5rem;
   }
 }

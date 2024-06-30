@@ -112,7 +112,7 @@
 }
 
 /* Media Query for responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .what-we-serve {
     flex-direction: column-reverse;
   }
@@ -122,12 +122,11 @@
   }
 
   .service-item {
-    border-right: none; /* Remove right border on smaller screens */
+    border-right: none;
   }
 
   .service-item:nth-child(odd),
   .service-item:nth-child(even) {
-    /* Odd items (1st, 3rd, etc.) */
     margin-top: 0;
     margin-bottom: 0;
   }

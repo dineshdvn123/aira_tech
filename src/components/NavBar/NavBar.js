@@ -25,16 +25,19 @@ const NavBar = () => {
             </div>
             <ul className={menuOpen ? "open" : ""}>
                 <li>
-                    <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
+                    <NavLink to="/" onClick={handleLinkClick}>HOME</NavLink>
+                </li>
+                {/* <li>
+                    <NavLink to="/about" onClick={handleLinkClick}>ABOUT US</NavLink>
+                </li> */}
+                <li>
+                    <NavLink to="/services" onClick={handleLinkClick}>SERVICES</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/services" onClick={handleLinkClick}>Services</NavLink>
+                    <NavLink to="/contact" onClick={handleLinkClick}>CONTACT</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/careers" onClick={handleLinkClick}>Careers</NavLink>
+                    <NavLink to="/careers" onClick={handleLinkClick}>CAREERS</NavLink>
                 </li>
             </ul>
         </nav>

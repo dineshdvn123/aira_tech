@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer'
 import Careers from './components/Careers/Careers';
 import JobDetail from './components/JobDetail/JobDetail';
 import ServiceDetails from './components/ServiceDetails/ServiceDetails';
+import AboutUsPage from './components/AboutUsPage/AboutUsPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about" element={<AboutUsPage />} />
         <Route path="/services" element={<Services />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/jobs/:jobId" element={<JobDetail />} />
