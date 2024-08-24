@@ -55,7 +55,7 @@ function Careers() {
 
   const fetchJobTitles = () => {
     axios
-      .get("https://airatech-admin-backend.onrender.com/job-titles")
+      .get("https://airatech-admin-backend.onrender.com/jobs/job-titles")
       // .get("http://localhost:8080/job-titles")
       .then((response) => {
         const options = response.data.map((title) => ({
@@ -71,7 +71,7 @@ function Careers() {
 
   const fetchLocations = () => {
     axios
-      .get("https://airatech-admin-backend.onrender.com/locations")
+      .get("https://airatech-admin-backend.onrender.com/jobs/locations")
       // .get("http://localhost:8080/locations")
       .then((response) => {
         const locations = response.data.map((loc) => ({

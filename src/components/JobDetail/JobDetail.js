@@ -124,7 +124,7 @@ function JobDetail() {
     try {
       const response = await axios.post(
         // `http://localhost:8080/apply/${jobId}`,
-        `https://airatech-admin-backend.onrender.com/apply/${jobId}`,
+        `https://airatech-admin-backend.onrender.com/applicants/apply/${jobId}`,
         formData,
         {
           headers: {
