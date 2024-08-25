@@ -86,8 +86,8 @@ function JobDetail() {
     window.scrollTo(0, 0);
     const fetchJob = async () => {
       try {
-        // const response = await axios.get(`http://localhost:8080/jobs/${jobId}`);
-        const response = await axios.get(`https://airatech-admin-backend.onrender.com/jobs/${jobId}`);
+        // const response = await axios.get(`https://airatech-admin-backend.onrender.com/jobs/${jobId}`);
+        const response = await axios.get(`https://airatech-admin-backend.onrender.com/userPageJobs/jobs/${jobId}`);
         setJob(response.data);
         setLoading(false);
       } catch (err) {
@@ -123,7 +123,7 @@ function JobDetail() {
 
     try {
       const response = await axios.post(
-        // `http://localhost:8080/apply/${jobId}`,
+        // `https://airatech-admin-backend.onrender.com/apply/${jobId}`,
         `https://airatech-admin-backend.onrender.com/applicants/apply/${jobId}`,
         formData,
         {
