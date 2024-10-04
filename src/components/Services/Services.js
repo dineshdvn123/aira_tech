@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaUserTie, FaCode, FaSearch, FaChalkboardTeacher } from 'react-icons/fa'; // Updated Icons
 import './Services.css';
 
 const Services = () => {
@@ -42,10 +43,10 @@ const Services = () => {
   return (
     <div className="services-page">
       <div className="page-description-services">
-        <h2>Services</h2>
+        <h2>Our Services</h2>
       </div>
       <section className="services-content">
-        <h4>Our Services</h4>
+        <h4>Our Core Offerings</h4>
         <h3>What We Do?</h3>
         <div className="service-section">
           <div
@@ -53,11 +54,13 @@ const Services = () => {
             data-animation="left"
             ref={(el) => (serviceItemsRef.current[0] = el)}
           >
-            <img src="" alt="Staffing And Recruitment" />
+            <div className="service-icon" style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+              <FaUserTie size={50} />
+            </div>
             <div>
-              <h4>Staffing And Recruitment</h4>
-              <p>Lorem Ipsum is simply dummy text of the industry standard dummy text ever scrambled type specimen book.</p>
-              <button onClick={() => handleDetailsClick('financial')}>Details</button>
+              <h4>Staffing and Recruitment</h4>
+              <p>Connecting talented professionals with leading companies to find their perfect match.</p>
+              <button onClick={() => handleDetailsClick('staffing')}>Details</button>
             </div>
           </div>
           <div
@@ -65,10 +68,12 @@ const Services = () => {
             data-animation="right"
             ref={(el) => (serviceItemsRef.current[1] = el)}
           >
-            <img src="" alt="Software Development" />
+            <div className="service-icon" style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+              <FaCode size={50} />
+            </div>
             <div>
               <h4>Software Development</h4>
-              <p>Lorem Ipsum is simply dummy text of the industry standard dummy text ever scrambled type specimen book.</p>
+              <p>Providing end-to-end software solutions tailored to your business needs and objectives.</p>
               <button onClick={() => handleDetailsClick('software')}>Details</button>
             </div>
           </div>
@@ -77,10 +82,12 @@ const Services = () => {
             data-animation="left"
             ref={(el) => (serviceItemsRef.current[2] = el)}
           >
-            <img src="" alt="Core Recruitment" />
+            <div className="service-icon" style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+              <FaSearch size={50} />
+            </div>
             <div>
               <h4>Core Recruitment</h4>
-              <p>Lorem Ipsum is simply dummy text of the industry standard dummy text ever scrambled type specimen book.</p>
+              <p>Specializing in finding and placing candidates for core roles in various industries.</p>
               <button onClick={() => handleDetailsClick('core')}>Details</button>
             </div>
           </div>
@@ -89,10 +96,12 @@ const Services = () => {
             data-animation="right"
             ref={(el) => (serviceItemsRef.current[3] = el)}
           >
-            <img src="" alt="Training Classroom's" />
+            <div className="service-icon" style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+              <FaChalkboardTeacher size={50} />
+            </div>
             <div>
-              <h4>Training Classroom's</h4>
-              <p>Lorem Ipsum is simply dummy text of the industry standard dummy text ever scrambled type specimen book.</p>
+              <h4>Training and Development</h4>
+              <p>Offering comprehensive training programs to enhance skills and advance careers.</p>
               <button onClick={() => handleDetailsClick('training')}>Details</button>
             </div>
           </div>

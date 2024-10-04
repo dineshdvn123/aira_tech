@@ -1,8 +1,15 @@
 import React from 'react';
-import './HeroSection.css'; // Create a CSS file for styling
+import './HeroSection.css';
+import { useNavigate } from "react-router-dom";
 import heroImage from '../../assets/Coding_4.png';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    navigate("/careers");
+  };
+
   return (
     <section className="hero">
       <div className="hero-content">
@@ -11,7 +18,7 @@ const HeroSection = () => {
           Empowering You to Pursue Your Passion<br />
           and Achieve Career Success
         </p>
-        <button className="fade-in-text" style={{ animationDelay: '1s' }}>Start Your Journey</button>
+        <button className="fade-in-text" style={{ animationDelay: '1s' }} onClick={handleGetStartedClick}>Check Our Careers</button>
       </div>
       <div className="hero-image">
         <img src={heroImage} alt="hero-section" />

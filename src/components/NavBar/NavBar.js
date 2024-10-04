@@ -15,7 +15,7 @@ const NavBar = () => {
             <div className="logo_title">
                 <img src={logo} alt="logo" className="logo" />
                 <Link to="/" className="title">
-                    AiraTech
+                    AiraTech Solutions
                 </Link>
             </div>
             <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>

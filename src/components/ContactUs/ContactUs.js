@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import './ContactUs.css';
 
 const GetInTouch = () => {
@@ -6,6 +9,8 @@ const GetInTouch = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState('');
+  const [errorStatus, setErrorStatus] = useState('');
   const [errors, setErrors] = useState({});
 
   const validateEmail = (email) => {
@@ -18,8 +23,10 @@ const GetInTouch = () => {
     return regex.test(phone);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitStatus('');
+    setErrorStatus('');
 
     const newErrors = {};
     if (!validateEmail(email)) {
@@ -34,8 +41,24 @@ const GetInTouch = () => {
       return;
     }
 
-    // Handle form submission here (e.g., send data to your backend)
-    console.log('Form submitted:', { name, email, phone, message });
+
+    try {
+      // Sending the form data to the backend using Axios
+      const response = await axios.post('https://airatech-admin-backend.onrender.com/sendMail', {
+        name,
+        email,
+        phone,
+        message,
+      });
+
+      if (response.status === 200) {
+        toast.success('Request was sent successfully!');
+      } else {
+        toast.error('Failed to send message. Please try again later.');
+      }
+    } catch (error) {
+      toast.error('Failed to send message. Please try again later.');
+    }
 
     // Clear the form
     setName('');
@@ -44,6 +67,7 @@ const GetInTouch = () => {
     setMessage('');
     setErrors({});
   };
+
 
   const handleInputChange = (e, setter, validator) => {
     setter(e.target.value);
@@ -59,12 +83,12 @@ const GetInTouch = () => {
   return (
     <section className="get-in-touch">
       <div className="container">
+      <ToastContainer style={{zIndex: 999999}}/>
         <h2>GET IN TOUCH</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies
-          mattis nulla, id tristique ut.
+          Kindly fill out your details we will contact you soon.
         </p>
-        <div className="contact-info">
+        {/* <div className="contact-info">
           <div className="info-item">
             <img src="/path/to/location-icon.svg" alt="Location" />
             <p>123 Main Street, Anytown, CA 12345</p>
@@ -77,7 +101,7 @@ const GetInTouch = () => {
             <img src="/path/to/phone-icon.svg" alt="Phone" />
             <p>+1 (555) 555-5555</p>
           </div>
-        </div>
+        </div> */}
         <form className="contact-form" onSubmit={handleSubmit}>
           <h3>YOUR DETAILS</h3>
           <div className="form-row">

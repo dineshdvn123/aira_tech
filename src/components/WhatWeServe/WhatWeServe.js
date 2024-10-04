@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './WhatWeServe.css';
+import { useNavigate } from 'react-router-dom';
 import JobPlacement from '../../assets/job-placement.png';
 import DevelopAndTraining from '../../assets/develop_and_trainng.png';
 import JobCounselling from '../../assets/job-counselling.png';
@@ -9,6 +10,11 @@ const WhatWeServe = () => {
   const sectionRef = useRef(null);
   const serviceItemsRef = useRef(null);
   const descriptionRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    navigate('/services'); // Replace '/desired-path' with the path of the component you want to redirect to
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -74,7 +80,7 @@ const WhatWeServe = () => {
           <h2 className="description-title">What We Serve</h2>
           <h2 className="description-heading">THE RECRUITMENT <br/> SOLUTION FOR YOU</h2>
           <p className="description-text">{description}</p>
-          <button className="get-started-button">Get Start Now</button>
+          <button className="get-started-button" onClick={handleGetStartedClick}>Check Our Services</button>
         </div>
       </section>
     </div>
