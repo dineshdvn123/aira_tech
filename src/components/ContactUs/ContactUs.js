@@ -79,10 +79,6 @@ const GetInTouch = () => {
     }
   };
 
-  React.useEffect(()=>{
-    toast.success('Request was sent successfully!');
-  },[])
-
   return (
     <section className="get-in-touch">
       <ToastContainer style={{ zIndex: 9999999 }} />
