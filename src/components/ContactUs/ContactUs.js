@@ -9,9 +9,8 @@ const GetInTouch = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-  const [submitStatus, setSubmitStatus] = useState('');
-  const [errorStatus, setErrorStatus] = useState('');
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); 
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,8 +24,7 @@ const GetInTouch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitStatus('');
-    setErrorStatus('');
+    setLoading(true); // Start loading
 
     const newErrors = {};
     if (!validateEmail(email)) {
@@ -38,12 +36,11 @@ const GetInTouch = () => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      setLoading(false); // Stop loading
       return;
     }
 
-
     try {
-      // Sending the form data to the backend using Axios
       const response = await axios.post('https://airatech-admin-backend.onrender.com/sendMail', {
         name,
         email,
@@ -57,7 +54,10 @@ const GetInTouch = () => {
         toast.error('Failed to send message. Please try again later.');
       }
     } catch (error) {
+      console.error('Error sending message:', error);
       toast.error('Failed to send message. Please try again later.');
+    } finally {
+      setLoading(false); // Stop loading
     }
 
     // Clear the form
@@ -67,7 +67,6 @@ const GetInTouch = () => {
     setMessage('');
     setErrors({});
   };
-
 
   const handleInputChange = (e, setter, validator) => {
     setter(e.target.value);
@@ -82,26 +81,17 @@ const GetInTouch = () => {
 
   return (
     <section className="get-in-touch">
-      <div className="container">
-      <ToastContainer style={{zIndex: 999999}}/>
+      <ToastContainer position="top-right" style={{ zIndex: 9999 }} />
+      {loading && (
+        <div className={`dimming-overlay ${loading ? 'active' : ''}`}>
+        <div className="loader-gif"></div>
+      </div>
+      )}
+      <div className={`container ${loading ? 'blur' : ''}`}>
         <h2>GET IN TOUCH</h2>
         <p>
           Kindly fill out your details we will contact you soon.
         </p>
-        {/* <div className="contact-info">
-          <div className="info-item">
-            <img src="/path/to/location-icon.svg" alt="Location" />
-            <p>123 Main Street, Anytown, CA 12345</p>
-          </div>
-          <div className="info-item">
-            <img src="/path/to/email-icon.svg" alt="Email" />
-            <p>contact@example.com</p>
-          </div>
-          <div className="info-item">
-            <img src="/path/to/phone-icon.svg" alt="Phone" />
-            <p>+1 (555) 555-5555</p>
-          </div>
-        </div> */}
         <form className="contact-form" onSubmit={handleSubmit}>
           <h3>YOUR DETAILS</h3>
           <div className="form-row">

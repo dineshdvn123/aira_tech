@@ -124,3 +124,45 @@
     }
   }
   
+  .loader-gif {
+    position: fixed; /* Use fixed to center relative to the viewport */
+    left: 50%;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px; /* Half of width to center */
+    margin-top: -15px; /* Half of height to center */
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    animation: spin 2s linear infinite;
+    z-index: 9999; /* Ensure it's on top of other elements */
+}
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .dimming-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    visibility: hidden; 
+}
+
+.dimming-overlay.active {
+    visibility: visible; /* Show when active */
+}
