@@ -79,9 +79,13 @@ const GetInTouch = () => {
     }
   };
 
+  React.useEffect(()=>{
+    toast.success('Request was sent successfully!');
+  },[])
+
   return (
     <section className="get-in-touch">
-      <ToastContainer position="top-right" style={{ zIndex: 9999 }} />
+      <ToastContainer style={{ zIndex: 9999999 }} />
       {loading && (
         <div className={`dimming-overlay ${loading ? 'active' : ''}`}>
         <div className="loader-gif"></div>
